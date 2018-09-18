@@ -1,0 +1,63 @@
+<html>
+	<head>
+	<title>Submission v0.1.1</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<style>
+body {font-family:sans-serif;}
+code {color:lightgrey;background:black;}
+	</style>
+	<script>
+function loadMap() {
+	var mapList = document.getElementById('mapList').value.split('\n');
+	return mapList;
+}
+
+function pingIt(URL) {
+	var googleURL = "https://www.google.com/ping?sitemap=" + URL;
+	var bingURL = "https://www.bing.com/webmaster/ping.aspx?sitemap=" + URL;
+	var googWin = window.open(googleURL,'_blank');
+	setTimeout(function(){googWin.close()},3000,googWin);
+	var bingWin = window.open(bingURL,'_blank');
+	setTimeout(function(){bingWin.close()},3000,bingWin);
+	return 0;
+}
+
+function parseList(mapList) {
+	for (var i = 0; i < mapList.length; i++) {
+		pingIt(mapList[i]);
+	}
+	return 0;
+}
+
+function main() {
+	var mapList = loadMap();
+	parseList(mapList);
+	return 0;
+}
+	</script>
+	</head>
+	<body>
+		<h1>Submission</h1>
+		<hr>
+		<div id="controls">
+		<label for="mapList">Enter Sitemap List:</label><br>
+		<textarea id="mapList" cols="80" rows="25"></textarea>
+		<br>
+		<label for="go">Submission:</label> <button id="go" onClick="main();">Go</button>
+		</div>
+		<hr>
+		<h2>Instructions</h2>
+		<ol>
+			<li>Enter list of sitemaps 
+			<ul>
+				<li>one sitemap per line
+				<li>full URL of sitemap, <em>eg</em> <code>https://www.2wexforddentists.com/sitemap.xml</code>
+			</ul>
+			<li>Click "Go"
+			<li>Authorize/enable/allow pop-ups if they are blocked (you may need to re-run the tool after the first time)
+		</ol>
+		<h2>About</h2>
+		<p><em>Submission</em> automates the submission of multiple sitemaps to <a href="https://www.google.com">Google</a> and <a href="https://www.bing.com">Bing</a>. There is no need to log into any accounts.</p>
+		<hr>
+	</body>
+</html>
